@@ -32,27 +32,27 @@
             <el-table :data="userList" style="width: 100%" border fixed>
                 <el-table-column label="#" type="index">
                 </el-table-column>
-                <el-table-column prop="subjectCode" label="学年学期">
+                <el-table-column prop="xuenian" label="学年学期">
                 </el-table-column>
-                <el-table-column prop="subjectName" label="课程代码" width="80">
+                <el-table-column prop="subjectCode" label="课程代码" width="80">
                 </el-table-column>
-                <el-table-column prop="studentCode" label="课程序号">
+                <el-table-column prop="subjectId" label="课程序号">
                 </el-table-column>
-                <el-table-column prop="studentName" label="课程名称">
+                <el-table-column prop="subjectName" label="课程名称">
                 </el-table-column>
-                <el-table-column prop="subjectScore" label="课程类别" width="80">
+                <el-table-column prop="subjectType" label="课程类别" width="80">
             </el-table-column>
-                <el-table-column prop="subjectScore" label="学分" width="80">
+                <el-table-column prop="xuefen" label="学分" width="80">
                 </el-table-column>
-                <el-table-column prop="subjectScore" label="补考成绩" width="80">
+                <el-table-column prop="bukaochengji" label="补考成绩" width="80">
                 </el-table-column>
-                <el-table-column prop="subjectScore" label="总评成绩" width="80">
+                <el-table-column prop="zongpingchengji" label="总评成绩" width="80">
             </el-table-column>
-                <el-table-column prop="subjectScore" label="重修1" width="80">
+                <el-table-column prop="chongxiu" label="重修1" width="80">
                 </el-table-column>
-                <el-table-column prop="subjectScore" label="最终" width="80">
+                <el-table-column prop="zuizhong" label="最终" width="80">
                 </el-table-column>
-                <el-table-column prop="subjectScore" label="绩点" width="80">
+                <el-table-column prop="jidian" label="绩点" width="80">
                 </el-table-column>
                 <el-table-column label="操作" width="120">
                     <template slot-scope="scope">
@@ -81,40 +81,43 @@
 
         <!--        新增弹出框-->
         <el-dialog
-                title="新增科目成绩"
+                title="新增信息"
                 :visible.sync="insertVisible"
                 :close-on-click-modal="false"
                 width="50%">
-            <el-form :model="RegistForm" :rules="registRules" ref="registFormRef" label-width="100px">
-                <el-form-item label="科目编码" prop="subjectCode">
-                    <el-input v-model="RegistForm.subjectCode"></el-input>
+            <el-form :model="RegistForm"  ref="registFormRef" label-width="100px">
+                <el-form-item label="学年学期" prop="xuenian">
+                    <el-input v-model="RegistForm.xuenian"></el-input>
                 </el-form-item>
-                <el-form-item label="科目名称" prop="subjectName">
-                    <el-input v-model="RegistForm.subjectName" type="studentName"></el-input>
+                <el-form-item label="课程代码" prop="subjectCode">
+                    <el-input v-model="RegistForm.subjectCode" ></el-input>
                 </el-form-item>
-                <el-form-item label="学生学号" prop="studentCode">
-                    <el-input v-model="RegistForm.studentCode"></el-input>
+                <el-form-item label="课程序号" prop="subjectId">
+                    <el-input v-model="RegistForm.subjectId"></el-input>
                 </el-form-item>
-                <el-form-item label="学生名称" prop="studentName">
-                    <el-input v-model="RegistForm.studentName"></el-input>
+                <el-form-item label="课程名称" prop="subjectName">
+                    <el-input v-model="RegistForm.subjectName"></el-input>
                 </el-form-item>
-                <el-form-item label="科目成绩" prop="subjectScore">
-                    <el-input v-model="RegistForm.subjectScore"></el-input>
+                <el-form-item label="课程类别" prop="subjectType">
+                    <el-input v-model="RegistForm.subjectType"></el-input>
                 </el-form-item>
-                <el-form-item label="科目成绩" prop="subjectScore">
-                    <el-input v-model="RegistForm.subjectScore"></el-input>
+                <el-form-item label="学分" prop="xuefen">
+                    <el-input v-model="RegistForm.xuefen"></el-input>
                 </el-form-item>
-                <el-form-item label="科目成绩" prop="subjectScore">
-                    <el-input v-model="RegistForm.subjectScore"></el-input>
+                <el-form-item label="补考成绩" prop="bukaochengji">
+                    <el-input v-model="RegistForm.bukaochengji"></el-input>
                 </el-form-item>
-                <el-form-item label="科目成绩" prop="subjectScore">
-                    <el-input v-model="RegistForm.subjectScore"></el-input>
+                <el-form-item label="总评成绩" prop="zongpingchengji">
+                    <el-input v-model="RegistForm.zongpingchengji"></el-input>
                 </el-form-item>
-                <el-form-item label="科目成绩" prop="subjectScore">
-                    <el-input v-model="RegistForm.subjectScore"></el-input>
+                <el-form-item label="重修1" prop="chongxiu">
+                    <el-input v-model="RegistForm.chongxiu"></el-input>
                 </el-form-item>
-                <el-form-item label="科目成绩" prop="subjectScore">
-                    <el-input v-model="RegistForm.subjectScore"></el-input>
+                <el-form-item label="最终" prop="zuizhong">
+                    <el-input v-model="RegistForm.zuizhong"></el-input>
+                </el-form-item>
+                <el-form-item label="绩点" prop="jidian">
+                    <el-input v-model="RegistForm.jidian"></el-input>
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
@@ -129,21 +132,39 @@
                 :visible.sync="updateVisible"
                 :close-on-click-modal="false"
                 width="50%" @close="updateClose">
-            <el-form :model="updateForm" :rules="updateFormRules" ref="updateFormRef" label-width="100px">
-                <el-form-item label="科目编码" prop="subjectCode">
+            <el-form :model="updateForm"  ref="updateFormRef" label-width="100px">
+                <el-form-item label="学年学期" prop="xuenian">
+                    <el-input v-model="updateForm.xuenian"></el-input>
+                </el-form-item>
+                <el-form-item label="课程代码" prop="subjectCode">
                     <el-input v-model="updateForm.subjectCode" ></el-input>
                 </el-form-item>
-                <el-form-item label="科目名称" prop="subjectName">
-                    <el-input v-model="updateForm.subjectName" ></el-input>
+                <el-form-item label="课程序号" prop="subjectId">
+                    <el-input v-model="updateForm.subjectId"></el-input>
                 </el-form-item>
-                <el-form-item label="学生学号" prop="studentCode">
-                    <el-input v-model="updateForm.studentCode" ></el-input>
+                <el-form-item label="课程名称" prop="subjectName">
+                    <el-input v-model="updateForm.subjectName"></el-input>
                 </el-form-item>
-                <el-form-item label="学生名称" prop="studentName">
-                    <el-input v-model="updateForm.studentName"></el-input>
+                <el-form-item label="课程类别" prop="subjectType">
+                    <el-input v-model="updateForm.subjectType"></el-input>
                 </el-form-item>
-                <el-form-item label="科目成绩" prop="subjectScore">
-                    <el-input v-model="updateForm.subjectScore"></el-input>
+                <el-form-item label="学分" prop="xuefen">
+                    <el-input v-model="updateForm.xuefen"></el-input>
+                </el-form-item>
+                <el-form-item label="补考成绩" prop="bukaochengji">
+                    <el-input v-model="updateForm.bukaochengji"></el-input>
+                </el-form-item>
+                <el-form-item label="总评成绩" prop="zongpingchengji">
+                    <el-input v-model="updateForm.zongpingchengji"></el-input>
+                </el-form-item>
+                <el-form-item label="重修1" prop="chongxiu">
+                    <el-input v-model="updateForm.chongxiu"></el-input>
+                </el-form-item>
+                <el-form-item label="最终" prop="zuizhong">
+                    <el-input v-model="updateForm.zuizhong"></el-input>
+                </el-form-item>
+                <el-form-item label="绩点" prop="jidian">
+                    <el-input v-model="updateForm.jidian"></el-input>
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
@@ -177,69 +198,35 @@
                 total: 0,
                 // 新增数据
                 RegistForm: {
+                    studentId: '',
+                    xuenian: '',
                     subjectCode: '',
+                    subjectId: '',
                     subjectName: '',
-                    studentCode: '',
-                    studentName: '',
-                    subjectScore: ''
+                    subjectType: '',
+                    xuefen: '',
+                    bukaochengji: '',
+                    zongpingchengji: '',
+                    chongxiu: '',
+                    zuizhong: '',
+                    jidian: ''
                 },
                 //修改的数据
                 updateForm: {
+                    studentId: '',
+                    xuenian: '',
                     subjectCode: '',
+                    subjectId: '',
                     subjectName: '',
-                    studentCode: '',
-                    studentName: '',
-                    subjectScore: '',
+                    subjectType: '',
+                    xuefen: '',
+                    bukaochengji: '',
+                    zongpingchengji: '',
+                    chongxiu: '',
+                    zuizhong: '',
+                    jidian: '',
                     id: ''
                 },
-                //修改时自定义的校验规则
-                updateFormRules: {
-                    //学生编号的校验 鼠标失去焦点后进行验证
-                    subjectCode: [
-                        {required: true, message: '请输入课程编码', trigger: 'blur'},
-                        {min: 1, max: 15, message: '长度在 1 到 15个字符', trigger: 'blur'}
-                    ],
-                    //学生姓名的校验 鼠标失去焦点后进行验证
-                    subjectName: [
-                        {required: true, message: '请输入课程名称', trigger: 'blur'},
-                        {min: 1, max: 15, message: '长度在 1 到 15个字符', trigger: 'blur'}
-                    ],
-                    //学生编码
-                    studentCode: [
-                        {required: true, message: '请输入学生编码', trigger: 'blur'}
-                    ],
-                    //学生姓名
-                    studentName: [
-                        {required: true, message: '请输入学生姓名', trigger: 'blur'},
-                    ],
-                    subjectScore: [
-                        {required: true, message: '请输入科目成绩', trigger: 'blur'},
-                    ]
-                },
-                //新增的数据校验规则
-                registRules: {
-                    //学生编号的校验 鼠标失去焦点后进行验证
-                    subjectCode: [
-                        {required: true, message: '请输入课程编码', trigger: 'blur'},
-                        {min: 1, max: 15, message: '长度在 1 到 15个字符', trigger: 'blur'}
-                    ],
-                    //学生姓名的校验 鼠标失去焦点后进行验证
-                    subjectName: [
-                        {required: true, message: '请输入课程名称', trigger: 'blur'},
-                        {min: 1, max: 15, message: '长度在 1 到 15个字符', trigger: 'blur'}
-                    ],
-                    //学生编码
-                    studentCode: [
-                        {required: true, message: '请输入学生编码', trigger: 'blur'}
-                    ],
-                    //学生姓名
-                    studentName: [
-                        {required: true, message: '请输入学生姓名', trigger: 'blur'},
-                    ],
-                    subjectScore: [
-                        {required: true, message: '请输入科目成绩', trigger: 'blur'},
-                    ]
-                }
             }
         },
         methods: {
@@ -263,7 +250,7 @@
                     return this.$message.info('已取消删除')
                 }
                 //删除数据的的请求
-                var data = await this.$http.get('/subject/delete?id=' + id)
+                var data = await this.$http.get('/studentSorce/delete?id=' + id)
                 //获取服务端响应
                 if (data.data.code !== 200) {
                     return this.$message.error(data.data.msg)
@@ -276,14 +263,21 @@
             //通过id查询数据并打开修改页面赋值进去
             async updateUser(id) {
                 //请求数据
-                var data = await this.$http.get('/subject/queryStudentById?id=' + id)
+                var data = await this.$http.get('/studentSorce/queryyId?id=' + id)
                 if (data.data.code != 200) return this.$message.error(data.data.msg);
                 console.log(data.data.data)
-                this.updateForm.studentName = data.data.data.studentName
+                this.updateForm.studentId = data.data.data.studentId
+                this.updateForm.xuenian = data.data.data.xuenian
                 this.updateForm.subjectCode = data.data.data.subjectCode
+                this.updateForm.subjectId = data.data.data.subjectId
                 this.updateForm.subjectName = data.data.data.subjectName
-                this.updateForm.studentCode = data.data.data.studentCode
-                this.updateForm.subjectScore = data.data.data.subjectScore
+                this.updateForm.subjectType = data.data.data.subjectType
+                this.updateForm.xuefen = data.data.data.xuefen
+                this.updateForm.bukaochengji = data.data.data.bukaochengji
+                this.updateForm.zongpingchengji = data.data.data.zongpingchengji
+                this.updateForm.chongxiu = data.data.data.chongxiu
+                this.updateForm.zuizhong = data.data.data.zuizhong
+                this.updateForm.jidian = data.data.data.jidian
                 this.updateForm.id = data.data.data.id
                 //弹出修改框
                 this.updateVisible = true
@@ -293,7 +287,7 @@
                 //预校验
                 this.$refs.updateFormRef.validate(async valid => {
                     if (!valid) return;
-                    var data = await this.$http.post('/subject/update', this.updateForm);
+                    var data = await this.$http.post('/studentSorce/update', this.updateForm);
                     if (data.data.code != 200) return this.$message.error(data.data.msg);
                     this.$message.success('修改成功')
                     this.$refs.updateFormRef.resetFields()
@@ -310,7 +304,7 @@
                 //预校验
                 this.$refs.registFormRef.validate(async valid => {
                     if (!valid) return;
-                    var data = await this.$http.post('/subject/insert', this.RegistForm);
+                    var data = await this.$http.post('/studentSorce/insert', this.RegistForm);
                     if (data.data.code != 200) return this.$message.error(data.data.msg);
                     this.$message.success('新增成功')
                     this.$refs.registFormRef.resetFields()
@@ -329,7 +323,7 @@
                 this.getUserList()
             },
             async getUserList() {
-                var data = await this.$http.get('/subject/getList', {params: this.queryInfo})
+                var data = await this.$http.get('/studentSorce/getList', {params: this.queryInfo})
                 this.userList = data.data.data.rows
                 this.total = data.data.data.total
             }

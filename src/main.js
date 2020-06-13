@@ -14,7 +14,7 @@ axios.interceptors.request.use(config=>{
 
 //配置请求接口的公共IP和端口号
 axios.defaults.baseURL='http://49.233.93.180:7001/'
-// axios.defaults.baseURL='http://127.0.0.1:7000/'
+// axios.defaults.baseURL='http://127.0.0.1:7001/'
 //配置http请求的axios
 Vue.prototype.$http=axios
 Vue.config.productionTip = false

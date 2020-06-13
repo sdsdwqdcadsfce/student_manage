@@ -13,8 +13,8 @@
             <el-row :gutter="10" type="flex" justify="space-between">
                 <!--                搜索区布局-->
                 <el-col :span="8">
-                    <el-input clearable @clear="getUserList" placeholder="请输入科目查询支持模糊查询" class="input-with-select"
-                              v-model="queryInfo.subjectName">
+                    <el-input clearable @clear="getUserList" placeholder="请输入教材名称查询支持模糊查询" class="input-with-select"
+                              v-model="queryInfo.bookName">
 
                     </el-input>
                 </el-col>
@@ -25,7 +25,7 @@
                 </el-col>
                 <el-col :span="3">
                     <div class="grid-content bg-purple">
-                        <el-button type="primary" @click="insertVisible =true">新增成绩信息</el-button>
+                        <el-button type="primary" @click="insertVisible =true">新增信息</el-button>
                     </div>
                 </el-col>
             </el-row>
@@ -33,21 +33,19 @@
             <el-table :data="userList" style="width: 100%" border fixed>
                 <el-table-column label="#" type="index">
                 </el-table-column>
-                <el-table-column prop="subjectCode" label="序号">
+                <el-table-column prop="bookId" label="书籍编码" >
                 </el-table-column>
-                <el-table-column prop="subjectName" label="课程代码" width="80">
+                <el-table-column prop="subjectName" label="课程名称" >
                 </el-table-column>
-                <el-table-column prop="studentName" label="课程名称">
-                </el-table-column>
-                <el-table-column prop="subjectScore" label="教材名称" width="80">
+                <el-table-column prop="bookName" label="教材名称" >
             </el-table-column>
-                <el-table-column prop="subjectScore" label="作者" width="80">
+                <el-table-column prop="bookAuthor" label="作者" width="80">
                 </el-table-column>
-                <el-table-column prop="subjectScore" label="出版社" width="80">
+                <el-table-column prop="chubanshe" label="出版社" >
                 </el-table-column>
-                <el-table-column prop="subjectScore" label="参考价格" width="80">
+                <el-table-column prop="jiage" label="参考价格" width="80">
             </el-table-column>
-                <el-table-column prop="subjectScore" label="已定数量" width="80">
+                <el-table-column prop="shuliang" label="已定数量" width="80">
                 </el-table-column>
                 <el-table-column label="操作" width="120">
                     <template slot-scope="scope">
@@ -80,22 +78,29 @@
                 :visible.sync="insertVisible"
                 :close-on-click-modal="false"
                 width="50%">
-            <el-form :model="RegistForm" :rules="registRules" ref="registFormRef" label-width="100px">
-                <el-form-item label="科目编码" prop="subjectCode">
-                    <el-input v-model="RegistForm.subjectCode"></el-input>
+            <el-form :model="RegistForm"  ref="registFormRef" label-width="100px">
+                <el-form-item label="书籍编码" prop="bookId">
+                    <el-input v-model="RegistForm.bookId"></el-input>
                 </el-form-item>
-                <el-form-item label="科目名称" prop="subjectName">
-                    <el-input v-model="RegistForm.subjectName" type="studentName"></el-input>
+                <el-form-item label="课程名称" prop="subjectName">
+                    <el-input v-model="RegistForm.subjectName" ></el-input>
                 </el-form-item>
-                <el-form-item label="学生学号" prop="studentCode">
-                    <el-input v-model="RegistForm.studentCode"></el-input>
+                <el-form-item label="教材名称" prop="bookName">
+                    <el-input v-model="RegistForm.bookName"></el-input>
                 </el-form-item>
-                <el-form-item label="学生名称" prop="studentName">
-                    <el-input v-model="RegistForm.studentName"></el-input>
+                <el-form-item label="作者" prop="bookAuthor">
+                    <el-input v-model="RegistForm.bookAuthor"></el-input>
                 </el-form-item>
-                <el-form-item label="科目成绩" prop="subjectScore">
-                    <el-input v-model="RegistForm.subjectScore"></el-input>
+                <el-form-item label="出版社" prop="chubanshe">
+                    <el-input v-model="RegistForm.chubanshe"></el-input>
                 </el-form-item>
+                <el-form-item label="参考价格" prop="jiage">
+                    <el-input v-model="RegistForm.jiage"></el-input>
+                </el-form-item>
+                <el-form-item label="已定数量" prop="shuliang">
+                    <el-input v-model="RegistForm.shuliang"></el-input>
+                </el-form-item>
+
             </el-form>
             <span slot="footer" class="dialog-footer">
                 <el-button type="primary" @click="insertUser">确 定</el-button>
@@ -109,21 +114,27 @@
                 :visible.sync="updateVisible"
                 :close-on-click-modal="false"
                 width="50%" @close="updateClose">
-            <el-form :model="updateForm" :rules="updateFormRules" ref="updateFormRef" label-width="100px">
-                <el-form-item label="科目编码" prop="subjectCode">
-                    <el-input v-model="updateForm.subjectCode" ></el-input>
+            <el-form :model="updateForm"  ref="updateFormRef" label-width="100px">
+                <el-form-item label="书籍编码" prop="bookId">
+                    <el-input v-model="updateForm.bookId"></el-input>
                 </el-form-item>
-                <el-form-item label="科目名称" prop="subjectName">
+                <el-form-item label="课程名称" prop="subjectName">
                     <el-input v-model="updateForm.subjectName" ></el-input>
                 </el-form-item>
-                <el-form-item label="学生学号" prop="studentCode">
-                    <el-input v-model="updateForm.studentCode" ></el-input>
+                <el-form-item label="教材名称" prop="bookName">
+                    <el-input v-model="updateForm.bookName"></el-input>
                 </el-form-item>
-                <el-form-item label="学生名称" prop="studentName">
-                    <el-input v-model="updateForm.studentName"></el-input>
+                <el-form-item label="作者" prop="bookAuthor">
+                    <el-input v-model="updateForm.bookAuthor"></el-input>
                 </el-form-item>
-                <el-form-item label="科目成绩" prop="subjectScore">
-                    <el-input v-model="updateForm.subjectScore"></el-input>
+                <el-form-item label="出版社" prop="chubanshe">
+                    <el-input v-model="updateForm.chubanshe"></el-input>
+                </el-form-item>
+                <el-form-item label="参考价格" prop="jiage">
+                    <el-input v-model="updateForm.jiage"></el-input>
+                </el-form-item>
+                <el-form-item label="已定数量" prop="shuliang">
+                    <el-input v-model="updateForm.shuliang"></el-input>
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
@@ -151,75 +162,36 @@
                 queryInfo: {
                     page: 1,
                     limit: 10,
-                    studentName: ''
+                    bookName: ''
                 },
                 userList: [],
                 total: 0,
                 // 新增数据
                 RegistForm: {
-                    subjectCode: '',
+                    bookId: '',
                     subjectName: '',
                     studentCode: '',
                     studentName: '',
-                    subjectScore: ''
+                    bookName: '',
+                    bookAuthor: '',
+                    chubanshe: '',
+                    jiage: '',
+                    shuliang: ''
                 },
                 //修改的数据
                 updateForm: {
-                    subjectCode: '',
+                    bookId: '',
                     subjectName: '',
                     studentCode: '',
                     studentName: '',
-                    subjectScore: '',
+                    bookName: '',
+                    bookAuthor: '',
+                    chubanshe: '',
+                    jiage: '',
+                    shuliang: '',
                     id: ''
                 },
-                //修改时自定义的校验规则
-                updateFormRules: {
-                    //学生编号的校验 鼠标失去焦点后进行验证
-                    subjectCode: [
-                        {required: true, message: '请输入课程编码', trigger: 'blur'},
-                        {min: 1, max: 15, message: '长度在 1 到 15个字符', trigger: 'blur'}
-                    ],
-                    //学生姓名的校验 鼠标失去焦点后进行验证
-                    subjectName: [
-                        {required: true, message: '请输入课程名称', trigger: 'blur'},
-                        {min: 1, max: 15, message: '长度在 1 到 15个字符', trigger: 'blur'}
-                    ],
-                    //学生编码
-                    studentCode: [
-                        {required: true, message: '请输入学生编码', trigger: 'blur'}
-                    ],
-                    //学生姓名
-                    studentName: [
-                        {required: true, message: '请输入学生姓名', trigger: 'blur'},
-                    ],
-                    subjectScore: [
-                        {required: true, message: '请输入科目成绩', trigger: 'blur'},
-                    ]
-                },
-                //新增的数据校验规则
-                registRules: {
-                    //学生编号的校验 鼠标失去焦点后进行验证
-                    subjectCode: [
-                        {required: true, message: '请输入课程编码', trigger: 'blur'},
-                        {min: 1, max: 15, message: '长度在 1 到 15个字符', trigger: 'blur'}
-                    ],
-                    //学生姓名的校验 鼠标失去焦点后进行验证
-                    subjectName: [
-                        {required: true, message: '请输入课程名称', trigger: 'blur'},
-                        {min: 1, max: 15, message: '长度在 1 到 15个字符', trigger: 'blur'}
-                    ],
-                    //学生编码
-                    studentCode: [
-                        {required: true, message: '请输入学生编码', trigger: 'blur'}
-                    ],
-                    //学生姓名
-                    studentName: [
-                        {required: true, message: '请输入学生姓名', trigger: 'blur'},
-                    ],
-                    subjectScore: [
-                        {required: true, message: '请输入科目成绩', trigger: 'blur'},
-                    ]
-                }
+
             }
         },
         methods: {
@@ -243,7 +215,7 @@
                     return this.$message.info('已取消删除')
                 }
                 //删除数据的的请求
-                var data = await this.$http.get('/subject/delete?id=' + id)
+                var data = await this.$http.get('/books/delete?id=' + id)
                 //获取服务端响应
                 if (data.data.code !== 200) {
                     return this.$message.error(data.data.msg)
@@ -256,14 +228,17 @@
             //通过id查询数据并打开修改页面赋值进去
             async updateUser(id) {
                 //请求数据
-                var data = await this.$http.get('/subject/queryStudentById?id=' + id)
+                var data = await this.$http.get('/books/queryyId?id=' + id)
                 if (data.data.code != 200) return this.$message.error(data.data.msg);
                 console.log(data.data.data)
-                this.updateForm.studentName = data.data.data.studentName
+                this.updateForm.bookId = data.data.data.bookId
                 this.updateForm.subjectCode = data.data.data.subjectCode
                 this.updateForm.subjectName = data.data.data.subjectName
-                this.updateForm.studentCode = data.data.data.studentCode
-                this.updateForm.subjectScore = data.data.data.subjectScore
+                this.updateForm.bookName = data.data.data.bookName
+                this.updateForm.bookAuthor = data.data.data.bookAuthor
+                this.updateForm.chubanshe = data.data.data.chubanshe
+                this.updateForm.jiage = data.data.data.jiage
+                this.updateForm.shuliang = data.data.data.shuliang
                 this.updateForm.id = data.data.data.id
                 //弹出修改框
                 this.updateVisible = true
@@ -273,7 +248,7 @@
                 //预校验
                 this.$refs.updateFormRef.validate(async valid => {
                     if (!valid) return;
-                    var data = await this.$http.post('/subject/update', this.updateForm);
+                    var data = await this.$http.post('/books/update', this.updateForm);
                     if (data.data.code != 200) return this.$message.error(data.data.msg);
                     this.$message.success('修改成功')
                     this.$refs.updateFormRef.resetFields()
@@ -290,7 +265,7 @@
                 //预校验
                 this.$refs.registFormRef.validate(async valid => {
                     if (!valid) return;
-                    var data = await this.$http.post('/subject/insert', this.RegistForm);
+                    var data = await this.$http.post('/books/insert', this.RegistForm);
                     if (data.data.code != 200) return this.$message.error(data.data.msg);
                     this.$message.success('新增成功')
                     this.$refs.registFormRef.resetFields()
@@ -309,7 +284,7 @@
                 this.getUserList()
             },
             async getUserList() {
-                var data = await this.$http.get('/subject/getList', {params: this.queryInfo})
+                var data = await this.$http.get('/books/getList', {params: this.queryInfo})
                 this.userList = data.data.data.rows
                 this.total = data.data.data.total
             }

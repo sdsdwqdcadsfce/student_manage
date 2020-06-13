@@ -82,7 +82,7 @@
                 :visible.sync="insertVisible"
                 :close-on-click-modal="false"
                 width="50%">
-            <el-form :model="RegistForm" :rules="registRules" ref="registFormRef" label-width="100px">
+            <el-form :model="RegistForm"  ref="registFormRef" label-width="100px">
                 <el-form-item label="课程序号" prop="subjectCode">
                     <el-input v-model="RegistForm.subjectCode"></el-input>
                 </el-form-item>
@@ -123,7 +123,7 @@
                 :visible.sync="updateVisible"
                 :close-on-click-modal="false"
                 width="50%" @close="updateClose">
-            <el-form :model="updateForm" :rules="updateFormRules" ref="updateFormRef" label-width="100px">
+            <el-form :model="updateForm"  ref="updateFormRef" label-width="100px">
                 <el-form-item label="课程序号" prop="subjectCode">
                     <el-input v-model="updateForm.subjectCode" ></el-input>
                 </el-form-item>
@@ -208,53 +208,53 @@
                     id: ''
                 },
                 //修改时自定义的校验规则
-                updateFormRules: {
-                    //学生编号的校验 鼠标失去焦点后进行验证
-                    subjectCode: [
-                        {required: true, message: '请输入课程编码', trigger: 'blur'},
-                        {min: 1, max: 15, message: '长度在 1 到 15个字符', trigger: 'blur'}
-                    ],
-                    //学生姓名的校验 鼠标失去焦点后进行验证
-                    subjectName: [
-                        {required: true, message: '请输入课程名称', trigger: 'blur'},
-                        {min: 1, max: 15, message: '长度在 1 到 15个字符', trigger: 'blur'}
-                    ],
-                    //学生编码
-                    studentCode: [
-                        {required: true, message: '请输入学生编码', trigger: 'blur'}
-                    ],
-                    //学生姓名
-                    studentName: [
-                        {required: true, message: '请输入学生姓名', trigger: 'blur'},
-                    ],
-                    subjectScore: [
-                        {required: true, message: '请输入科目成绩', trigger: 'blur'},
-                    ]
-                },
-                //新增的数据校验规则
-                registRules: {
-                    //学生编号的校验 鼠标失去焦点后进行验证
-                    subjectCode: [
-                        {required: true, message: '请输入课程编码', trigger: 'blur'},
-                        {min: 1, max: 15, message: '长度在 1 到 15个字符', trigger: 'blur'}
-                    ],
-                    //学生姓名的校验 鼠标失去焦点后进行验证
-                    subjectName: [
-                        {required: true, message: '请输入课程名称', trigger: 'blur'},
-                        {min: 1, max: 15, message: '长度在 1 到 15个字符', trigger: 'blur'}
-                    ],
-                    //学生编码
-                    studentCode: [
-                        {required: true, message: '请输入学生编码', trigger: 'blur'}
-                    ],
-                    //学生姓名
-                    studentName: [
-                        {required: true, message: '请输入学生姓名', trigger: 'blur'},
-                    ],
-                    subjectScore: [
-                        {required: true, message: '请输入科目成绩', trigger: 'blur'},
-                    ]
-                }
+                // updateFormRules: {
+                //     //编号的校验 鼠标失去焦点后进行验证
+                //     subjectCode: [
+                //         {required: true, message: '请输入课程编码', trigger: 'blur'},
+                //         {min: 1, max: 15, message: '长度在 1 到 15个字符', trigger: 'blur'}
+                //     ],
+                //     //学生姓名的校验 鼠标失去焦点后进行验证
+                //     subjectName: [
+                //         {required: true, message: '请输入课程名称', trigger: 'blur'},
+                //         {min: 1, max: 15, message: '长度在 1 到 15个字符', trigger: 'blur'}
+                //     ],
+                //     //学生编码
+                //     studentCode: [
+                //         {required: true, message: '请输入学生编码', trigger: 'blur'}
+                //     ],
+                //     //学生姓名
+                //     studentName: [
+                //         {required: true, message: '请输入学生姓名', trigger: 'blur'},
+                //     ],
+                //     subjectScore: [
+                //         {required: true, message: '请输入科目成绩', trigger: 'blur'},
+                //     ]
+                // },
+                // //新增的数据校验规则
+                // registRules: {
+                //     //学生编号的校验 鼠标失去焦点后进行验证
+                //     subjectCode: [
+                //         {required: true, message: '请输入课程编码', trigger: 'blur'},
+                //         {min: 1, max: 15, message: '长度在 1 到 15个字符', trigger: 'blur'}
+                //     ],
+                //     //学生姓名的校验 鼠标失去焦点后进行验证
+                //     subjectName: [
+                //         {required: true, message: '请输入课程名称', trigger: 'blur'},
+                //         {min: 1, max: 15, message: '长度在 1 到 15个字符', trigger: 'blur'}
+                //     ],
+                //     //学生编码
+                //     studentCode: [
+                //         {required: true, message: '请输入学生编码', trigger: 'blur'}
+                //     ],
+                //     //学生姓名
+                //     studentName: [
+                //         {required: true, message: '请输入学生姓名', trigger: 'blur'},
+                //     ],
+                //     subjectScore: [
+                //         {required: true, message: '请输入科目成绩', trigger: 'blur'},
+                //     ]
+                // }
             }
         },
         methods: {
@@ -278,7 +278,7 @@
                     return this.$message.info('已取消删除')
                 }
                 //删除数据的的请求
-                var data = await this.$http.get('/subject/delete?id=' + id)
+                var data = await this.$http.get('/test/delete?id=' + id)
                 //获取服务端响应
                 if (data.data.code !== 200) {
                     return this.$message.error(data.data.msg)
@@ -291,14 +291,18 @@
             //通过id查询数据并打开修改页面赋值进去
             async updateUser(id) {
                 //请求数据
-                var data = await this.$http.get('/subject/queryStudentById?id=' + id)
+                var data = await this.$http.get('/test/queryyId?id=' + id)
                 if (data.data.code != 200) return this.$message.error(data.data.msg);
                 console.log(data.data.data)
-                this.updateForm.studentName = data.data.data.studentName
+                this.updateForm.testType = data.data.data.testType
                 this.updateForm.subjectCode = data.data.data.subjectCode
                 this.updateForm.subjectName = data.data.data.subjectName
-                this.updateForm.studentCode = data.data.data.studentCode
-                this.updateForm.subjectScore = data.data.data.subjectScore
+                this.updateForm.testDate = data.data.data.testDate
+                this.updateForm.testAnpai = data.data.data.testAnpai
+                this.updateForm.testDidian = data.data.data.testDidian
+                this.updateForm.testZuoweihao = data.data.data.testZuoweihao
+                this.updateForm.testQingkuang = data.data.data.testQingkuang
+                this.updateForm.testOther = data.data.data.testOther
                 this.updateForm.id = data.data.data.id
                 //弹出修改框
                 this.updateVisible = true
@@ -308,7 +312,7 @@
                 //预校验
                 this.$refs.updateFormRef.validate(async valid => {
                     if (!valid) return;
-                    var data = await this.$http.post('/subject/update', this.updateForm);
+                    var data = await this.$http.post('/test/update', this.updateForm);
                     if (data.data.code != 200) return this.$message.error(data.data.msg);
                     this.$message.success('修改成功')
                     this.$refs.updateFormRef.resetFields()
@@ -320,12 +324,12 @@
             updateClose() {
                 this.$refs.updateFormRef.resetFields()
             },
-            // 新增学生信息
+            // 新增信息
             insertUser() {
                 //预校验
                 this.$refs.registFormRef.validate(async valid => {
                     if (!valid) return;
-                    var data = await this.$http.post('/subject/insert', this.RegistForm);
+                    var data = await this.$http.post('/test/insert', this.RegistForm);
                     if (data.data.code != 200) return this.$message.error(data.data.msg);
                     this.$message.success('新增成功')
                     this.$refs.registFormRef.resetFields()
@@ -344,7 +348,7 @@
                 this.getUserList()
             },
             async getUserList() {
-                var data = await this.$http.get('/subject/getList', {params: this.queryInfo})
+                var data = await this.$http.get('/test/getList', {params: this.queryInfo})
                 this.userList = data.data.data.rows
                 this.total = data.data.data.total
             }

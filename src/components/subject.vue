@@ -35,7 +35,7 @@
                 </el-table-column>
                 <el-table-column prop="subjectCode" label="课程编码">
                 </el-table-column>
-                <el-table-column prop="subjectName" label="课程名称" width="80">
+                <el-table-column prop="subjectName" label="课程名称" >
                 </el-table-column>
                 <el-table-column prop="studentCode" label="学生学号">
                 </el-table-column>
